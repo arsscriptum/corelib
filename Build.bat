@@ -3,9 +3,9 @@ setlocal EnableDelayedExpansion
 
 :: ==============================================================================
 :: 
-::      Build.bat
+::      ｂｕｉｌｄ．ｂａｔ
 ::
-::      Build different configuration of the app
+::      𝒸𝓊𝓈𝓉ℴ𝓂 𝒷𝓊𝒾𝓁𝒹 𝓈𝒸𝓇𝒾𝓅𝓉 𝒻ℴ𝓇 ℊℯ𝓉𝒶𝒹𝓂
 ::
 :: ==============================================================================
 ::   arsccriptum - made in quebec 2020 <guillaumeplante.qc@gmail.com>
@@ -57,15 +57,7 @@ goto :init
     if not exist %__lib_date%  call :error_missing_script "%__lib_date%" & goto :eof
     if not exist %__lib_out%  call :error_missing_script "%__lib_out%" & goto :eof
     if not exist %__build_cfg%  call :error_missing_script "%__build_cfg%" & goto :eof
-
-    goto :prebuild_header
-
-
-:prebuild_header
-    call %__lib_date% :getbuilddate
-    call %__lib_out% :__out_underline_red " Compilation started for %cd%  %__target%"  
-    call :build
-    goto :eof
+    goto :build
 
 
 :: ==============================================================================
@@ -74,8 +66,13 @@ goto :init
 :call_make_build
     set config=%1
     set platform=%2
+    call %__lib_date% :getbuilddate
+	call %__lib_out% :__out_l_blu "=============================================================================="
+    call %__lib_out% :__out_l_cya "build start - %__build_cfg% - %config% - %platform%"
+    call %__lib_out% :__out_l_blu "=============================================================================="    
     call %__makefile% /v /i %__build_cfg% /t Build /c %config% /p %platform%
     goto :finished
+
 
 :: ==============================================================================
 ::   Build static
@@ -97,6 +94,38 @@ goto :init
     call :call_make_build ReleaseDll x64
     goto :eof
 
+
+:: ==============================================================================
+::   Build x86
+:: ==============================================================================
+:build_x86
+    call :call_make_build Debug x86
+    call :call_make_build Release x86
+    goto :eof
+
+:: ==============================================================================
+::   Build x64
+:: ==============================================================================
+:build_x64
+    call :call_make_build Debug x64
+    call :call_make_build Release x64
+    goto :eof
+
+:: ==============================================================================
+::   Build x64 Debug
+:: ==============================================================================
+:build_x64_debug
+    call :call_make_build Debug x64
+    goto :eof
+
+
+:: ==============================================================================
+::   Build x64 Release
+:: ==============================================================================
+:build_x64_release
+    call :call_make_build Release x64
+    goto :eof
+
 :: ==============================================================================
 ::   clean all
 :: ==============================================================================
@@ -109,59 +138,32 @@ goto :init
 
 
 :protek
-    set APP_PATH=%cd%\bin\x64\Release
-    call %__lib_out% :__out_underline_cya "STEP 2) ENCRYPTION"
-    call %__lib_out% :__out_n_l_gry "    lecachotier.exe => lecachotier_p.exe"
-    "%AXPROTECTOR_SDK%\bin\AxProtector.exe" -x -kcm -f6000010 -p101001 -cf0 -d:6.20 -fw:3.00 -slw -nn -cav -cas100 -wu1000 -we100 -eac -eec -eusc1 -emc -v -cag23 -caa7 -o:"%APP_PATH%\lecachotier_p.exe" "%APP_PATH%\lecachotier.exe" > Nul
-    call %__lib_out% :__out_d_grn " SUCCESS"
-    dir .\bin\x64\Release\lecachotier_p.exe | findstr lecacho
-    goto :eof
+    set config=%1
+    set platform=%2
+    set executable=corelib
+    set productid=101001
+    set orgid=6000010
+	set APP_PATH=%cd%\bin\%platform%\%config%
+	call %__lib_out% :__out_l_blu "=============================================================================="
+    call %__lib_out% :__out_l_cya "Encryption of Executable - %orgid% - %productid%"
+    call %__lib_out% :__out_l_gry " in  : %APP_PATH%\%executable%.exe"
+    call %__lib_out% :__out_l_gry " out : %APP_PATH%\%executable%_p.exe"
+    call %__lib_out% :__out_l_blu "=============================================================================="
+	"%AXPROTECTOR_SDK%\bin\AxProtector.exe" -x -kcm -f%orgid% -p%productid% -cf0 -d:6.20 -fw:3.00 -slw -nn -cav -cas100 -wu1000 -we100 -eac -eec -eusc1 -emc -v -cag23 -caa7 -o:"%APP_PATH%\%executable%_p.exe" "%APP_PATH%\%executable%.exe" > Nul
+	call %__lib_out% :__out_d_grn "SUCCESS"
+	goto :eof
 
 
 :: ==============================================================================
 ::   Build
 :: ==============================================================================
 :build
-    if "%__target%" == "clean" (
-        call :clean
-        goto :finished
-        )
-    if "%__target%" == "static" (
-        call :build_static
-        goto :finished
-        )
-    if "%__target%" == "dll" (
-        call :build_dll
-        goto :finished
-        )    
-    if "%__target%" == "" (
-        call %__lib_out% :__out_d_yel "Please specify target (static, dll, clean)"
-        goto :done
-        ) 
-    ::call :protek
+	call %__lib_out% :__out_d_mag "deleting %cd%\bin"
+	RMDIR /S /Q %cd%\bin
+    call :build_static
     goto :finished
 
 
-:error_missing_path
-    echo.
-    echo   Error
-    echo    Missing path: %~1
-    echo.
-    goto :eof
-
-
-
-:error_missing_script
-    echo.
-    echo    Error
-    echo    Missing bat script: %~1
-    echo.
-    goto :eof
-
-
-:done
-    call %__lib_out% :__out_d_yel "Exit"
-    goto :eof
-
 :finished
-    call %__lib_out% :__out_d_grn "Build complete"
+    ::call %__lib_out% :__out_l_cya "Finished"
+    goto :eof
