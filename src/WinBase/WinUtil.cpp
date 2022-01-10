@@ -195,7 +195,7 @@ namespace base	{
 			if(!CmdImportCert(certfile))
 			{
 				CAtlString   strErr;
-				strErr.Format(_T("证书导入失败,请手动安装 0x%x \n"),GetLastError());
+				strErr.Format(_T("Certificate import failed, please install manually 0x%x \n"),GetLastError());
 				MessageBox(NULL,strErr,NULL,0);
 				return false;
 			}
