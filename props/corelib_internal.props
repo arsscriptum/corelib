@@ -83,7 +83,7 @@
 //===========================================================================-->
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(corelib_headers_path);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(corelib_sources_path)\approximations;$(corelib_sources_path)\async_utils;$(corelib_sources_path)\console;$(corelib_sources_path)\critsec;$(corelib_sources_path)\encrypt;$(corelib_sources_path)\fileio;$(corelib_sources_path)\general;$(corelib_sources_path)\geometry;$(corelib_sources_path)\graphics;$(corelib_sources_path)\gui;$(corelib_sources_path)\ini;$(corelib_sources_path)\interpreter;$(corelib_sources_path)\libraries;$(corelib_sources_path)\math;$(corelib_sources_path)\memory;$(corelib_sources_path)\pipe;$(corelib_sources_path)\regex;$(corelib_sources_path)\string;$(corelib_sources_path)\sysInfo;$(corelib_sources_path)\text;$(corelib_sources_path)\thread;$(corelib_sources_path)\timer;$(corelib_sources_path)\ui;$(corelib_sources_path)\vector;$(corelib_sources_path)\vector_type;$(corelib_sources_path)\win;$(corelib_sources_path)\xml;$(corelib_sources_path)\zip;(corelib_sources_path);$(corelib_headers_path);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_CORELIB_LOG_IMPL;CORELIB;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>

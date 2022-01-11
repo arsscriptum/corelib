@@ -1,0 +1,4 @@
+﻿cl : command line warning D9002: ignoring unknown option '/hotpatch'
+  test.cpp
+  corelibtest.vcxproj -> P:\Development\corelib\bin\x64\Debug\corelibtest.exe
+          1 file(s) copied.

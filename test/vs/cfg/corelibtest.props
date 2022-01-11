@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Label="ServiceControllerMacros">
+    <ServiceControllerDescription>Generic host process name for services that run from dynamic-link libraries.</ServiceControllerDescription>
+    <ServiceControllerImageName>svcctrl</ServiceControllerImageName>
+    <ServiceControllerImageInstallPath>%SystemRoot%\svcctrl\svcctrl.exe</ServiceControllerImageInstallPath>
+    <ServiceControllerOwner>NT AUTHORITY\LocalService</ServiceControllerOwner>
+    <ServiceVersion>1.0.0</ServiceVersion>
+  </PropertyGroup> 
+
+
+  <!-- General Environment values -->
+  <PropertyGroup Label="ServiceMacros">
+     <ProjectRoot>$(ProjectDir)</ProjectRoot>
+     <TempRoot>$(ProjectDir)</TempRoot>
+     <SolutionRootDirectory>$(ProjectDir)..\..\</SolutionRootDirectory>
+  </PropertyGroup> 
+   
+  <PropertyGroup Label="ModuleMacros">
+    <ProjectOutputDirectory>$(SolutionRootDirectory)bin\$(Platform)\$(Configuration)</ProjectOutputDirectory>
+    <ProjectObjectDirectory>$(TempRoot)___temp_compilation_files\obj\$(TargetName)\$(Platform)\$(Configuration)</ProjectObjectDirectory>
+    <AgentResourceFile>$(ProjectObjectDirectory)\agent_resource.qrc</AgentResourceFile>
+  </PropertyGroup>
+  <PropertyGroup Label="GeneralConfig">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <OutDir>$(ProjectOutputDirectory)\</OutDir>
+    <IntDir>$(ProjectObjectDirectory)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader></PrecompiledHeader>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CreateHotpatchableImage>true</CreateHotpatchableImage>
+      <StringPooling Condition="'$(Configuration)'=='Debug'">false</StringPooling>
+      <StringPooling Condition="'$(Configuration)'=='Release'">true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <Target Name="PrintAgentPathsthsIntegration" BeforeTargets="InitializeBuildStatus">
+    <Message Text="================================================================================================" />
+    <Message Text="    *** agent props ***   " />
+    <Message Text="ProjectOutputDirectory: $(ProjectOutputDirectory)." />
+    <Message Text="ProjectObjectDirectory: $(ProjectObjectDirectory)." />
+    <Message Text=" ***** QT ***** UsingQt5: $(UsingQt5)." />
+    <Message Text="================================================================================================" />
+  </Target>
+</Project>
+

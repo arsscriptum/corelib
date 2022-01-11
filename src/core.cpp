@@ -9,16 +9,16 @@
 // Includes for console
 //================================================
 
-// #include "console\baseterminal.cpp"
+#include "console\baseterminal.cpp"
 // #include "console\Console.cpp"
-// #include "console\log.cpp"
-// #include "console\terminal_formatting.cpp"
+#include "console\log.cpp"
+#include "console\terminal_formatting.cpp"
 
 //================================================
 // Includes for critsec
 //================================================
 
-// #include "critsec\critsec.cpp"
+#include "critsec\critsec.cpp"
 
 //================================================
 // Includes for encrypt
@@ -80,13 +80,13 @@
 // Includes for thread
 //================================================
 
-// #include "thread\cthread.cpp"
+#include "thread\cthread.cpp"
 
 //================================================
 // Includes for timer
 //================================================
 
-// #include "timer\hi_res_timer.cpp"
+#include "timer\hi_res_timer.cpp"
 
 //================================================
 // Includes for ui

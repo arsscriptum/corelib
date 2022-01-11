@@ -20,8 +20,8 @@
 #include <stack>
 #include <regex>
 #include <string>
-
-
+#include "baseterminal.h"
+#include "console\log.h"
 
 const std::string ANSI_TEXT_COLOR_RESET = "\u001b[0m";
 const std::string ANSI_TEXT_COLOR_BLACK = "\u001b[30m";
@@ -62,7 +62,7 @@ const std::string ANSI_TEXT_COLOR_WHITE_BKGRND = "\u001b[47m";
 // EndOfLineEscapeStreamScope formatter by Steve132
 
 typedef std::pair<std::string, std::string> EndOfLineEscapeTag;
-
+/*
 struct EndOfLineEscapeStreamScope
 {
   protected:
@@ -101,7 +101,7 @@ inline EndOfLineEscapeStreamScope operator<<(std::ostream &os, const EndOfLineEs
 {
     return EndOfLineEscapeStreamScope(tg, os);
 }
-
+*/
 
 
 // ------------------------------------------------------//

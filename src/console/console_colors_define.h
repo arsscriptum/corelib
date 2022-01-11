@@ -94,3 +94,5 @@ namespace console
     const std::string ANSI_STRIKEOUT_CYAN = "\u001B[36;9m";
     const std::string ANSI_STRIKEOUT_WHITE = "\u001B[37;9m";
 }
+
+#endif

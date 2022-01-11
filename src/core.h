@@ -44,17 +44,17 @@
 // Includes for console
 //================================================
 
-// #include "console\baseterminal.h"
-// #include "console\console_colors_define.h"
+ #include "console\baseterminal.h"
+ #include "console\console_colors_define.h"
 // #include "console\Console.h"
-// #include "console\log.h"
-// #include "console\terminal_formatting.h"
+ #include "console\log.h"
+ #include "console\terminal_formatting.h"
 
 //================================================
 // Includes for critsec
 //================================================
 
-// #include "critsec\critsec.h"
+ #include "critsec\critsec.h"
 
 //================================================
 // Includes for encrypt
@@ -332,13 +332,13 @@
 // Includes for thread
 //================================================
 
-// #include "thread\cthread.h"
+ #include "thread\cthread.h"
 
 //================================================
 // Includes for timer
 //================================================
 
-// #include "timer\hi_res_timer.h"
+ #include "timer\hi_res_timer.h"
 
 //================================================
 // Includes for ui

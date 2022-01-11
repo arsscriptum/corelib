@@ -348,45 +348,45 @@ public:
 	// -----------------------------------------------------------------------------
 	typedef std::pair<std::string, std::string> EndOfLineEscapeTag;
 
-	struct EndOfLineEscapeStreamScope
+	struct BaseEndOfLineEscapeStreamScope
 	{
 	protected:
 		EndOfLineEscapeTag tag;
 		std::ostream &os;
 
-		EndOfLineEscapeStreamScope(const EndOfLineEscapeTag &ttag, std::ostream &tout) : tag(ttag),
+		BaseEndOfLineEscapeStreamScope(const EndOfLineEscapeTag &ttag, std::ostream &tout) : tag(ttag),
 			os(tout)
 		{
 			os << tag.first; //you can overload this for custom ostream types with a different color interface
 							 //this might also have a stack interface for if you need multiple resets
 		}
 
-		friend EndOfLineEscapeStreamScope operator<<(std::ostream &out, const EndOfLineEscapeTag &tg);
+		friend BaseEndOfLineEscapeStreamScope operator<<(std::ostream &out, const EndOfLineEscapeTag &tg);
 
 	public:
 		template <class T>
-		EndOfLineEscapeStreamScope &operator<<(T &&t)
+		BaseEndOfLineEscapeStreamScope &operator<<(T &&t)
 		{
 			os << std::forward<T>(t);
 			return *this;
 		}
 
-		EndOfLineEscapeStreamScope &operator<<(std::ostream &(&M)(std::ostream &))
+		BaseEndOfLineEscapeStreamScope &operator<<(std::ostream &(&M)(std::ostream &))
 		{
 			M(os);
 			return *this;
 		}
 
-		~EndOfLineEscapeStreamScope()
+		~BaseEndOfLineEscapeStreamScope()
 		{
 			os << tag.second;
 		}
 	};
 };
 
-inline BaseTerminal::EndOfLineEscapeStreamScope operator<<(std::ostream &os, const BaseTerminal::EndOfLineEscapeTag &tg)
+inline BaseTerminal::BaseEndOfLineEscapeStreamScope operator<<(std::ostream &os, const BaseTerminal::EndOfLineEscapeTag &tg)
 {
-	return BaseTerminal::EndOfLineEscapeStreamScope(tg, os);
+	return BaseTerminal::BaseEndOfLineEscapeStreamScope(tg, os);
 }
 
 
