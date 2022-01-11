@@ -47,14 +47,8 @@ public:
 	static bool string_remove_first_char_if(std::string &input, const char character);
 	static std::vector<std::string> split_string_once(const std::string &input, const char split_char);
 
-	void Title(const std::string& text, std::ostream& out = std::cout, char underline = '=');
-
-	void title(const std::string& text, std::ostream& out = std::cout, char underline = '-');
-
 	void putline(size_t j = 1, std::ostream& out = std::cout);
 
-	std::string sTitle(const std::string& text, char underline = '=');
-	std::string stitle(const std::string& text, char underline = '-');
 
 	std::string sputline(size_t j = 1);
 	//-- remove whitespace from front and back of string argument ---

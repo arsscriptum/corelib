@@ -22,38 +22,11 @@ StringHelpers* StringHelpers::getInstance()
 
 	return instance;
 }
-void StringHelpers::Title(const std::string& text, std::ostream& out, char underline)
-{
-	out << "\n  " << text;
-	out << "\n " << std::string(text.size() + 2, underline);
-}
-
-void StringHelpers::title(const std::string& text, std::ostream& out, char underline)
-{
-	out << "\n  " << text;
-	out << "\n " << std::string(text.size() + 2, underline);
-}
 
 void StringHelpers::putline(size_t j, std::ostream& out)
 {
 	for (size_t i = 0; i < j; ++i)
 		out << "\n";
-}
-
-std::string StringHelpers::sTitle(const std::string& text, char underline)
-{
-	std::ostringstream out;
-	out << "\n  " << text;
-	out << "\n " << std::string(text.size() + 2, underline);
-	return out.str();
-}
-
-std::string StringHelpers::stitle(const std::string& text, char underline)
-{
-	std::ostringstream out;
-	out << "\n  " << text;
-	out << "\n " << std::string(text.size() + 2, underline);
-	return out.str();
 }
 
 std::string StringHelpers::sputline(size_t j)
