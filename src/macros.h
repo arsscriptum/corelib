@@ -13,6 +13,8 @@
 
 #include <stdarg.h>
 
+
+
 #define NOTHROW_NEW(I,O) do{try{ O = new I; }catch(std::bad_alloc){O=0;}}while(0)
 
 #define NOTHROW_NEW_RET(I,O,R) do{try{O=new I;if(O==0){ R; return 0;} }   \
@@ -135,6 +137,15 @@ char (&ArraySizeHelper(T (&array)[N]))[N];
 #define DECLARE_ENUM_2(enum1,enum2,R)   if(enum1==t1 && enum2==t2) return R;
 
 #define END_ENUM() return _T(""); }
+
+
+#define STRINGIFY(x) #x                 // makes the name of x a string
+#define VALUE_STRINGIFY(s) STRINGIFY(s)         // makes the value of x a string
+#define flag_update(x)  if (abs(x)==2) (x) >>= 1
+
+#if (defined(__GNUC__) && !defined(__clang__) && !defined(__INTEL_COMPILER))
+    #define _gcc_
+#endif
 
 
 // sprintf ÓÃµÄÒ»Ð©¸ñÊ½»¯×Ö·û

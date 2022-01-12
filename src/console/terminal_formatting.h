@@ -214,7 +214,7 @@ struct RegexFormatter
                 {
                     priorityMatch = i;
                     std::size_t off = match.offsetOfMatch();
-                    startLocation = off;
+                    startLocation = (uint32_t)off;
                 }
             }
 
@@ -241,8 +241,8 @@ struct RegexFormatter
             }
 
             sstr << matched(rules[priorityMatch], matchStr);
-
-            segmentStart = matches[priorityMatch].offsetOfMatch() + matchStr.length();
+            
+            segmentStart = (uint32_t)matches[priorityMatch].offsetOfMatch() + matchStr.length();
 
         } while (true);
     }

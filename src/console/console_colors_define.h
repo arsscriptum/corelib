@@ -11,6 +11,14 @@
 #ifndef __CONSOLE_COLORS_DEFS_H__
 #define __CONSOLE_COLORS_DEFS_H__
 
+
+#include <sstream>
+#include <string>
+#include <stdio.h>
+#include <iostream>
+#include <ctime>
+
+
 namespace console
 {
     const std::string RESET = "\033[0m";  // Text Reset
@@ -39,7 +47,9 @@ namespace console
     const std::string BLACK_UNDERLINED = "\033[4;30m";  // BLACK
     const std::string RED_UNDERLINED = "\033[4;31m";    // RED
     const std::string GREEN_UNDERLINED = "\033[4;32m";  // GREEN
+    const std::string GREEN_BRIGHT_UNDERLINED = "\033[4;92m";  // GREEN
     const std::string YELLOW_UNDERLINED = "\033[4;33m"; // YELLOW
+    const std::string YELLOW_BRIGHT_UNDERLINED = "\033[4;93m"; // YELLOW
     const std::string BLUE_UNDERLINED = "\033[4;34m";   // BLUE
     const std::string PURPLE_UNDERLINED = "\033[4;35m"; // PURPLE
     const std::string CYAN_UNDERLINED = "\033[4;36m";   // CYAN

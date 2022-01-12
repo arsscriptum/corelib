@@ -11,7 +11,7 @@
 
 #include "targetver.h"
 #include "core.h"
-
+#include "nowarns.h"
 
 #include <stdio.h>
 #include <tchar.h>

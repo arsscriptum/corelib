@@ -158,8 +158,8 @@ goto :init
 ::   Build
 :: ==============================================================================
 :build
-	call %__lib_out% :__out_d_mag "deleting %cd%\bin"
-	RMDIR /S /Q %cd%\bin
+    call %__lib_out% :__out_d_mag "deleting %cd%\bin"
+    RMDIR /S /Q %cd%\bin
     call :build_static
     goto :finished
 

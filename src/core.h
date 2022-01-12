@@ -3,6 +3,10 @@
 // Includes for approximations
 //================================================
 
+
+#include "macros.h"
+#include "nowarns.h"
+
 // #include "approximations\fast_cos.h"
 // #include "approximations\fast_float.h"
 // #include "approximations\fixed_point.h"
@@ -106,9 +110,9 @@
 
 // #include "general\audio.h"
 // #include "general\base.h"
-// #include "general\blocking_queue.h"
+ #include "general\blocking_queue.h"
 // #include "general\crash_dump.h"
-// #include "general\enum_to_string.h"
+ #include "general\enum_to_string.h"
 // #include "general\estimates.h"
 // #include "general\globals.h"
 // #include "general\hashing.h"

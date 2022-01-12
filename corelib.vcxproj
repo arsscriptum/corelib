@@ -231,6 +231,7 @@ Copyright (c) 2020 cybercastor, All rights reserved
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\console\console_colors_define.h" />
     <ClInclude Include="src\core.h" />
     <ClInclude Include="src\core_types.h" />
     <ClInclude Include="src\macros.h" />

@@ -30,6 +30,8 @@
 #pragma  warning( disable: 4189 )
 #pragma  warning( disable: 4100 )
 #pragma  warning( disable: 4245 )
+#pragma  warning( disable: 4257 )   // conversion from 'XXX' to 'YYY', possible loss of data
+#pragma  warning( disable: 4267 )   // conversion from 'XXX' to 'YYY', possible loss of data
 #pragma  warning( disable: 4005 )
 #pragma  warning( disable: 4715 )
 // The following are pure sillywarnings:
