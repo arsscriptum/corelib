@@ -13,6 +13,7 @@
 
 
 #include <Windows.h>
+#include "nowarns.h"
 #include <functional>
 #include <iostream>
 #include <sstream>

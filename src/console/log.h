@@ -46,6 +46,7 @@ void __cdecl ConsoleError(const char *format, ...);
 void __cdecl ConsoleWarning(const char* format, ...);
 void __cdecl ConsoleTrace(const char* format, ...);
 void __cdecl ConsoleInfo(const char *format, ...);
+void __cdecl ConsoleLogInstall(const char* format, ...);
 
 # define COUTCMD( ... )		{ ConsoleLog(  __VA_ARGS__ );  }	
 # define COUTTRACE( ... )	{ ConsoleTrace(  __VA_ARGS__ );  }	
@@ -60,7 +61,9 @@ void __cdecl ConsoleInfo(const char *format, ...);
 # define COUTM( ... ) { ConsoleOut(CONSOLE_COLOR_MAGENTA_BRIGHT,  __VA_ARGS__ );  }	
 # define COUTC( ... ) { ConsoleOut(CONSOLE_COLOR_CYAN_BRIGHT,  __VA_ARGS__ );  }	
 # define COUTCS( ... ) { ConsoleOut(CONSOLE_COLOR_CYAN,  __VA_ARGS__ );  }
+# define COUTNET( ... )		{ ConsoleLogInstall(  __VA_ARGS__ );  }	
 
+# define LOG_INSTALL( ... )		{ ConsoleLogInstall(  __VA_ARGS__ );  }	
 # define LOG_CONSOLE( color, ... ) { ConsoleOut( color, __VA_ARGS__ );  }	
 
 #ifndef DEJA_DISABLED

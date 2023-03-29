@@ -66,8 +66,8 @@ void __cdecl ConsoleWarning(const char* format, ...)
 	*p++ = '\n';
 	*p = '\0';
 
-	EndOfLineEscapeTag FormatTitle{ console::RED_UNDERLINED, ANSI_TEXT_COLOR_RESET };
-	EndOfLineEscapeTag FormatText{ console::YELLOW_BRIGHT_UNDERLINED, ANSI_TEXT_COLOR_RESET };
+	EndOfLineEscapeTag FormatTitle{ console::RED_BRIGHT, ANSI_TEXT_COLOR_RESET };
+	EndOfLineEscapeTag FormatText{ console::YELLOW, ANSI_TEXT_COLOR_RESET };
 	std::clog << FormatTitle << "[WARN] ";
 	std::clog << FormatText << buf;
 }
@@ -91,9 +91,34 @@ void __cdecl ConsoleTrace(const char* format, ...)
 	*p++ = '\n';
 	*p = '\0';
 
-	EndOfLineEscapeTag FormatTitle{ console::BLUE_BOLD, ANSI_TEXT_COLOR_RESET };
-	EndOfLineEscapeTag FormatText{ console::WHITE_BOLD, ANSI_TEXT_COLOR_RESET };
+	EndOfLineEscapeTag FormatTitle{ console::PURPLE, ANSI_TEXT_COLOR_RESET };
+	EndOfLineEscapeTag FormatText{ console::WHITE, ANSI_TEXT_COLOR_RESET };
 	std::clog << FormatTitle << "[app] ";
+	std::clog << FormatText << buf;
+}
+
+void __cdecl ConsoleLogInstall(const char* format, ...)
+{
+	char    buf[4096], * p = buf;
+	va_list args;
+	int     n;
+
+	va_start(args, format);
+	n = vsnprintf(p, sizeof buf - 3, format, args); // buf-3 is room for CR/LF/NUL
+	va_end(args);
+
+	p += (n < 0) ? sizeof buf - 3 : n;
+
+	while (p > buf && isspace(p[-1]))
+		*--p = '\0';
+
+	*p++ = '\r';
+	*p++ = '\n';
+	*p = '\0';
+
+	//EndOfLineEscapeTag FormatTitle{ console::BLUE, console::WHITE_BOLD };
+	EndOfLineEscapeTag FormatText{ console::PURPLE_BRIGHT, ANSI_TEXT_COLOR_RESET };
+	//std::clog << FormatTitle << "[install] ";
 	std::clog << FormatText << buf;
 }
 
@@ -116,9 +141,9 @@ void __cdecl ConsoleLog(const char *format, ...)
 	*p++ = '\n';
 	*p = '\0';
 
-	EndOfLineEscapeTag FormatTitle{ console::BLUE_BACKGROUND_BRIGHT, console::WHITE_BOLD };
-	EndOfLineEscapeTag FormatText{ console::WHITE_BOLD, ANSI_TEXT_COLOR_RESET };
-	std::clog << FormatTitle << "[trace] ";
+	//EndOfLineEscapeTag FormatTitle{ console::YELLOW_BOLD, console::WHITE_BOLD };
+	EndOfLineEscapeTag FormatText{ console::CYAN, ANSI_TEXT_COLOR_RESET };
+	//std::clog << FormatTitle << "[trace] ";
 	std::clog << FormatText << buf;
 }
 
@@ -141,8 +166,8 @@ void __cdecl ConsoleInfo(const char *format, ...)
 	*p++ = '\n';
 	*p = '\0';
 
-	EndOfLineEscapeTag FormatTitle{ console::GREEN_UNDERLINED, ANSI_TEXT_COLOR_RESET };
-	EndOfLineEscapeTag FormatText{ console::GREEN_BOLD_BRIGHT, ANSI_TEXT_COLOR_RESET };
+	EndOfLineEscapeTag FormatTitle{ console::YELLOW_BOLD, ANSI_TEXT_COLOR_RESET };
+	EndOfLineEscapeTag FormatText{ console::WHITE, ANSI_TEXT_COLOR_RESET };
 	std::clog << FormatTitle << "[info] ";
 	std::clog << FormatText << buf;
 }
