@@ -33,3 +33,6 @@ examples/tmp/**
 .vs
 .vs/**
 
+# meta proj file generated with MSBUILDEMITSOLUTION=1
+*.vcxproj.metaproj
+*.metaproj
